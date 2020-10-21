@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 
 import { View, Text } from 'react-native';
 
@@ -8,7 +8,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //import { createStackNavigator } from '@react-navigation/stack';
 
+import PersonList from './src/person/PersonList';
 
+import ProductList from './src/product/ProdictList';
+
+import Click from './src/Click';
 
 
 
@@ -48,7 +52,17 @@ const Tab = createBottomTabNavigator();
 
 
 
-export default function App() {
+function App() {
+
+  const [count, setCount] = useState(10);
+
+  let countString = "count in App:"+count;
+
+  function updateCount(newCount){
+
+    setCount(newCount);
+
+  }
 
   return (
 
@@ -58,7 +72,11 @@ export default function App() {
 
         <Tab.Screen name="Home" component={HomeScreen} />
 
-        <Tab.Screen name="Details" component={DetailsScreen} />
+        <Tab.Screen name="Person" component={PersonList} />
+
+        <Tab.Screen name="Product" component={ProductList} />
+
+        <Tab.Screen name="Click" component={Click} initialParams={{ count: 10 }}/>
 
       </Tab.Navigator>
 
@@ -67,3 +85,7 @@ export default function App() {
   );
 
 }
+
+
+
+export default App;
